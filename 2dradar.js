@@ -3,7 +3,7 @@ console.log("StormOrigin WeatherOptics v1.0 - Copyright StormOrigin 2022")
 
 const map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/cwhit567/cl7y5andf000714tbyk115um5',
+style: 'mapbox://styles/cwhit567/cl8m70mgr001e15miryripx69',
 center: [153.240, -27.718],
 zoom: 6.5,
 });
@@ -313,7 +313,7 @@ break;
  
 map.addSource('radar', {
 'type': 'image',
-'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/66/66_512_${year}${month}${day}_${hour}${minutes}.png`,
+'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/66/66_256_${year}${month}${day}_${hour}${minutes}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
