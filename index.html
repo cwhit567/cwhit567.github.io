@@ -4,21 +4,21 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>WeatherOptics 2D Radar</title>
+    <title>WeatherOptics Satellite</title>
     <!-- tab icon -->
     <link rel="icon" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/round_logo.png" type="image/png">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="template/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="template/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="template/css/style.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/style.css">
     <!-- fontawesome kit code -->
     <script src="https://kit.fontawesome.com/1868a14f8e.js" crossorigin="anonymous"></script>
     <!-- map settings -->
-    <link rel="stylesheet" href="2dradar.css">
+    <link rel="stylesheet" href="satellite.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
   </head>
@@ -35,7 +35,7 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img style="width: 38px;" alt="logo" src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/round_logo.png"></img>
+                  <img style="width: 38px;" alt="logo" src="https://i.imgur.com/c9VV2uF.png"></img>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
@@ -401,50 +401,44 @@
               <div class="col-lg-12 grid-margin">
                 <div class="settings-card">
                   <div class="settings-card-body">
-                    <h4 class="card-title">Radar Settings</h4>
+                    <h4 class="card-title">Satellite Settings</h4>
                     <div class="template-demo">
                       <div class="dropdown">
-                        <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radar Range</button>
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Area</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <a class="dropdown-item" href="#">32km</a>
+                          <a class="dropdown-item" href="#">National</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">64km</a>
+                          <a class="dropdown-item" href="#">NSW</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">96km</a>
+                          <a class="dropdown-item" href="#">NT</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">128km</a>
+                          <a class="dropdown-item" href="#">Qld</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">160km</a>
+                          <a class="dropdown-item" href="#">SA</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">192km</a>
+                          <a class="dropdown-item" href="#">Tas</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">256km</a>
+                          <a class="dropdown-item" href="#">Vic</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">512km</a>
+                          <a class="dropdown-item" href="#">WA</a>
                         </div>
                       </div>
                       <div class="dropdown">
-                        <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radar Product</button>
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Satellite Product</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <a class="dropdown-item" href="#">Reflectivity</a>
+                          <a class="dropdown-item" href="#">Visible (500m)</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Velocity</a>
+                          <a class="dropdown-item" href="#">Day & Night (1km)</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Infrared (2km)</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Enhanced Infrared (2km)</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Infrared Rainbow (2km)</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Water Vapour (2km)</a>
                         </div>
                       </div>
-                      <div class="dropdown">
-                        <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radar Scan Type</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <a class="dropdown-item" href="#">Constant Altitude</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Base Scan (0.5°)</a>
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-primary btn-rounded btn-lg btn-block">
-                        <div class="map-overlay-inner">
-                          <label>Radar opacity: <span id="slider-value">100%</span></label><br>
-                          <input id="slider" type="range" min="0" max="100" step="0" value="100" class="slider">
-                        </div>
-                      </button>
                     </div>
                   </div> 
                 </div>
@@ -458,10 +452,6 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 
 <div id='map'>
-  <div class="legend">
-    <img id="legend-image" alt="legend" src="http://stanthorshs.ipto.com.au/Student/cwhit567/Free%20Time/Weather/Radars/Zeus/zeus-legend.png">
-  </div>
-
   <div id='menu'></div>
 
   <pre id="info">
@@ -480,16 +470,16 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="template/js/vendor.bundle.base.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="template/js/off-canvas.js"></script>
-    <script src="template/js/hoverable-collapse.js"></script>
-    <script src="template/js/misc.js"></script>
-    <script src="template/js/settings.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/off-canvas.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/hoverable-collapse.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/misc.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/settings.js"></script>
     <!-- endinject -->
     <!-- Map settings js -->
-    <script src="2dradar.js"></script>
+    <script src="satellite.js"></script>
     <!-- End Map settings js -->
   </body>
 </html>
