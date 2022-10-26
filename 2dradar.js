@@ -3,7 +3,7 @@ console.log("StormOrigin WeatherOptics v1.0 - Copyright StormOrigin 2022")
 
 const map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/cwhit567/cl8m70mgr001e15miryripx69',
+style: 'mapbox://styles/cwhit567/ckwsu0yki1efg15pi0pw74bfl',
 center: [153.240, -27.718],
 zoom: 6.5,
 });

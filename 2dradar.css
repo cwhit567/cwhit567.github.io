@@ -16,6 +16,11 @@ body {
 
 #map canvas {
 cursor: crosshair;
+width: 100%;
+}
+
+.mapboxgl-canvas {
+    width: 100%;
 }
 
 .mapboxgl-ctrl-bottom-left {
