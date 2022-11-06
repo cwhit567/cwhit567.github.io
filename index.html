@@ -309,7 +309,7 @@
                   <div class="settings-card-body">
                     <h4 class="card-title">Radar Timestamp</h4>
                     <div class="template-demo">
-                      <button style="border-radius: 10px;" type="button" class="btn btn-outline-primary btn-fw">
+                      <button contenteditable="true;" style="border-radius: 10px;" type="button" class="btn btn-outline-primary btn-fw">
                           <code style="color: white;" id="output1">
                             <span>Timestamp</span>
                           </code>
@@ -397,13 +397,6 @@ var storm = document.getElementById('storm')
 var sat = document.getElementById('sat')
 var DateTime = luxon.DateTime; //--> Luxon's date object
 var Interval = luxon.Interval; //--> Luxon's interval object
-
-// var end = DateTime.utc('2017-03-13');
-// var start = DateTime.utc('2017-02-13');
-// var i = Interval.fromDateTimes(start, end);
-// i.length('days');
-// i.length('months');
-// console.log(i);
 
 var radtimeConst1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeConst2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
