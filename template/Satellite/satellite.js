@@ -1,4 +1,4 @@
-console.log("StormOrigin WeatherOptics v1.0 - Copyright StormOrigin 2022")	
+console.log("StormOrigin WeatherOptics v1 - Copyright StormOrigin 2022")	
   mapboxgl.accessToken = 'pk.eyJ1IjoiY3doaXQ1NjciLCJhIjoiY2w1dGppejBuMnMxajNrbW0zanBiZG82ZSJ9.k2dgaG9FYSu1MJfvWjAbDA';
 	
 	// Set bounds to a specific area.

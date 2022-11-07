@@ -8,13 +8,13 @@
     <!-- tab icon -->
     <link rel="icon" href="https://i.imgur.com/c9VV2uF.png" type="image/png">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/css/style.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/style.css">
     <!-- fontawesome kit code -->
     <script src="https://kit.fontawesome.com/1868a14f8e.js" crossorigin="anonymous"></script>
     <!-- map settings -->
@@ -101,13 +101,13 @@
             </a>
             <div class="collapse" id="radar">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="template/2D%20Radar/index.html">2D Radar</a>
+                <li class="nav-item"> <a class="nav-link" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/2D%20Radar/index.html">2D Radar</a>
                 <li class="nav-item"> <a class="nav-link" href="#">3D Radar</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="template\Satellite\satellite.html">
+            <a class="nav-link" href="D:\cwhit567\My Documents\Sublime Text\Dashboards\WeatherOptics_Dashboard\template\Satellite\satellite.html">
               <span class="menu-icon">
                 <i class="fa-solid fa-satellite"></i>
               </span>
@@ -314,22 +314,10 @@
                             <span>Timestamp</span>
                           </code>
                       </button>
-                      <h5 class="card-title">Satellite Latest</h5>
+                      <h5 class="card-title">Satellite, Radar and Lightning Latest</h5>
                       <button style="border-radius: 10px;" type="button" class="btn btn-outline-primary btn-fw">
                           <code style="color: white;" id="sat">
                             <span>Radar</span>
-                          </code>
-                      </button>
-                      <h5 class="card-title">Radar Latest</h5>
-                      <button style="border-radius: 10px;" type="button" class="btn btn-outline-primary btn-fw">
-                          <code style="color: white;" id="sat">
-                            <span>Storm</span>
-                          </code>
-                      </button>
-                      <h5 class="card-title">Lightning Latest</h5>
-                      <button style="border-radius: 10px;" type="button" class="btn btn-outline-primary btn-fw">
-                          <code style="color: white;" id="sat">
-                            <span>Satellite</span>
                           </code>
                       </button>
                     </div>
@@ -363,13 +351,13 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/js/vendor.bundle.base.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/js/off-canvas.js"></script>
-    <script src="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/js/hoverable-collapse.js"></script>
-    <script src="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/js/misc.js"></script>
-    <script src="https://raw.githubusercontent.com/cwhit567/cwhit567.github.io/main/template/js/settings.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/off-canvas.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/hoverable-collapse.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/misc.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/settings.js"></script>
     <!-- endinject -->
     <!-- Map settings js -->
     <script src="satellite.js"></script>
@@ -403,21 +391,57 @@ var Interval = luxon.Interval; //--> Luxon's interval object
 
 var radtimeConst1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeConst2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (radtimeConst2 < 1000){
+    radtimeConst2 = "0" + radtimeConst2
+  }
+  if (radtimeConst2 < 100){
+    radtimeConst2 = "00" + radtimeConst2
+  }
+  if (radtimeConst2 < 10){
+    radtimeConst2 = "000" + radtimeConst2
+  }
 var radtimeConstOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var radtimeBase1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeBase2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (radtimeBase2 < 1000){
+    radtimeBase2 = "0" + radtimeBase2
+  }
+  if (radtimeBase2 < 100){
+    radtimeBase2 = "00" + radtimeBase2
+  }
+  if (radtimeBase2 < 10){
+    radtimeBase2 = "000" + radtimeBase2
+  }
 var radtimeBaseOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var stormtime1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var stormtime2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (stormtime2 < 1000){
+    stormtime2 = "0" + stormtime2
+  }
+  if (stormtime2 < 100){
+    stormtime2 = "00" + stormtime2
+  }
+  if (stormtime2 < 10){
+    stormtime2 = "000" + stormtime2
+  }
 var stormtimeOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var sattime1 = DateTime.utc().minus({ minutes: 20 }).toFormat('yyyyLLdd');
 var sattime2 = Math.floor(DateTime.utc().minus({ minutes: 20 }).toFormat('HHmm') / 10) * 10;
+  if (sattime2 < 1000){
+    sattime2 = "0" + sattime2
+  }
+  if (sattime2 < 100){
+    sattime2 = "00" + sattime2
+  }
+  if (sattime2 < 10){
+    sattime2 = "000" + sattime2
+  }
 var sattimeOutput1 = DateTime.now().minus({ minutes: 20 }).toFormat('ccc dd LLL, h:mma ZZ');
 
 var radtimeConst = radtimeConst1 + "_" + radtimeConst2;
 var radtimeBase = radtimeBase1 + "_" + radtimeBase2;
 var stormtime = stormtime1 + "_" + stormtime2;
-var sattime = sattime1 + "_" + sattime2;
+var sattime = sattime1 + sattime2;
 
 
 console.log("radtimeConst: " + radtimeConst);
@@ -430,8 +454,8 @@ console.log("stormtimeOutput1: " + stormtimeOutput1);
 console.log("sattimeOutput1: " + sattimeOutput1);
 
 output1.textContent = radtimeConstOutput1;
-rad.textContent = radtimeConst;
-storm.textContent = stormtime;
+// rad.textContent = radtimeConst;
+// storm.textContent = stormtime;
 sat.textContent = sattime;
 
 // dayjs date and time
@@ -446,48 +470,7 @@ sat.textContent = sattime;
 // console.log("radtimeConst:" + " " + radtimeConst)
 // console.log("stormtime:" + " " + stormtime)
 // console.log("sattime:" + " " + sattime)
-
-map.on('load', () => {
-const layers = map.getStyle().layers;
-// Find the index of the first symbol layer in the map style.
-let firstSymbolId;
-for (const layer of layers) {
-if (layer.type === 'symbol') {
-firstSymbolId = layer.id;
-break;
-}
-}
  
-map.addSource('satellite', {
-'type': 'image',
-'url': `https://archive.weatherwatch.net.au/data/satdata/ww/qld/IDE00435.${sattime}_150.jpg`,
-coordinates: [
-[135.00569, -9.68925], // northwest coordinates
-[155.97859, -9.68925], // northeast coordinates
-[155.97859, -30.83075], // southeast coordinates
-[135.00569, -30.83075], // southwest coordinates
-]
-});
-map.addLayer(
-{
-'id': 'Satellite',
-'type': 'raster',
-'source': 'satellite',
-'paint': {
-'raster-fade-duration': 0
-}
-// This is the important part of this example: the addLayer
-// method takes 2 arguments: the layer as an object, and a string
-// representing another layer's name. If the other layer
-// exists in the style already, the new layer will be positioned
-// right before that layer in the stack, making it possible to put
-// 'overlays' anywhere in the layer stack.
-// Insert the layer beneath the first symbol layer.
-},
-firstSymbolId
-);
-});
-
 map.on('load', () => {
 const layers = map.getStyle().layers;
 // Find the index of the first symbol layer in the map style.
@@ -501,12 +484,12 @@ break;
  
 map.addSource('radar', {
 'type': 'image',
-'url': `https://zeus.stormyweather.com.au/img/WWSat/qld/qld_${sattime}.png`,
+'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/066/066_256_${radtimeConst}.png`,
 coordinates: [
-[135.00569, -9.68925], // northwest coordinates
-[155.97859, -9.68925], // northeast coordinates
-[155.97859, -30.83075], // southeast coordinates
-[135.00569, -30.83075], // southwest coordinates
+[150.64224, -25.41804], // northwest coordinates
+[155.83723, -25.41804], //northeast coordinates
+[155.83723, -30.01744], //southeast coordinates
+[150.64224, -30.01744], //southwest coordinates
 ]
 });
 map.addLayer(
@@ -542,12 +525,12 @@ break;
  
 map.addSource('lightning', {
 'type': 'image',
-'url': `https://archive.weatherwatch.net.au/data/lightning/ww/qld/${sattime}.png`,
+'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/066/066_256_cg_${stormtime}.png`,
 coordinates: [
-[135.00569, -9.68925], // northwest coordinates
-[155.97859, -9.68925], // northeast coordinates
-[155.97859, -30.83075], // southeast coordinates
-[135.00569, -30.83075], // southwest coordinates
+[150.64224, -25.41804], // northwest coordinates
+[155.83723, -25.41804], //northeast coordinates
+[155.83723, -30.01744], //southeast coordinates
+[150.64224, -30.01744], //southwest coordinates
 ]
 });
 map.addLayer(
@@ -570,35 +553,35 @@ firstSymbolId
 );
 });
 
-// map.on('load', () => {
-// const layers = map.getStyle().layers;
+map.on('load', () => {
+const layers = map.getStyle().layers;
 // Find the index of the first symbol layer in the map style.
-// let firstSymbolId;
-// for (const layer of layers) {
-// if (layer.type === 'symbol') {
-// firstSymbolId = layer.id;
-// break;
-// }
-// }
+let firstSymbolId;
+for (const layer of layers) {
+if (layer.type === 'symbol') {
+firstSymbolId = layer.id;
+break;
+}
+}
  
-// map.addSource('boundary', {
-// 'type': 'image',
-// 'url': `https://i.imgur.com/PJuvD8I.png`,
-// coordinates: [
-// [134.999389, -10.798143], // northwest coordinates
-// [155.999937, -10.798143], // northeast coordinates
-// [155.999937, -31.000807], // southeast coordinates
-// [134.999389, -31.000807], // southwest coordinates
-// ]
-// });
-// map.addLayer(
-// {
-// 'id': 'Boundary',
-// 'type': 'raster',
-// 'source': 'boundary',
-// 'paint': {
-// 'raster-fade-duration': 0
-// }
+map.addSource('storms', {
+'type': 'image',
+'url': `https://storms.weatherwatch.net.au/images/066/256_${stormtime}.png`,
+coordinates: [
+[150.64224, -25.41804], // northwest coordinates
+[155.83723, -25.41804], //northeast coordinates
+[155.83723, -30.01744], //southeast coordinates
+[150.64224, -30.01744], //southwest coordinates
+]
+});
+map.addLayer(
+{
+'id': 'Storms',
+'type': 'raster',
+'source': 'storms',
+'paint': {
+'raster-fade-duration': 0
+}
 // This is the important part of this example: the addLayer
 // method takes 2 arguments: the layer as an object, and a string
 // representing another layer's name. If the other layer
@@ -606,9 +589,10 @@ firstSymbolId
 // right before that layer in the stack, making it possible to put
 // 'overlays' anywhere in the layer stack.
 // Insert the layer beneath the first symbol layer.
-// },
-// firstSymbolId
-// );
-// });
+},
+firstSymbolId
+);
+});
+</script>
   </body>
 </html>
