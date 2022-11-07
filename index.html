@@ -8,13 +8,13 @@
     <!-- tab icon -->
     <link rel="icon" href="https://i.imgur.com/c9VV2uF.png" type="image/png">
     <!-- plugins:css -->
-    <link rel="stylesheet" href="template/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="template/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="template/css/style.css">
+    <link rel="stylesheet" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/css/style.css">
     <!-- fontawesome kit code -->
     <script src="https://kit.fontawesome.com/1868a14f8e.js" crossorigin="anonymous"></script>
     <!-- map settings -->
@@ -101,13 +101,13 @@
             </a>
             <div class="collapse" id="radar">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="template/2D%20Radar/index.html">2D Radar</a>
+                <li class="nav-item"> <a class="nav-link" href="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/2D%20Radar/index.html">2D Radar</a>
                 <li class="nav-item"> <a class="nav-link" href="#">3D Radar</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="template\Satellite\satellite.html">
+            <a class="nav-link" href="D:\cwhit567\My Documents\Sublime Text\Dashboards\WeatherOptics_Dashboard\template\Satellite\satellite.html">
               <span class="menu-icon">
                 <i class="fa-solid fa-satellite"></i>
               </span>
@@ -367,13 +367,13 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="template/js/vendor.bundle.base.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="template/js/off-canvas.js"></script>
-    <script src="template/js/hoverable-collapse.js"></script>
-    <script src="template/js/misc.js"></script>
-    <script src="template/js/settings.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/off-canvas.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/hoverable-collapse.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/misc.js"></script>
+    <script src="file:///D:/cwhit567/My%20Documents/Sublime%20Text/Dashboards/WeatherOptics_Dashboard/template/js/settings.js"></script>
     <!-- endinject -->
     <!-- Map settings js -->
     <script src="2dradar.js"></script>
@@ -398,17 +398,60 @@ var sat = document.getElementById('sat')
 var DateTime = luxon.DateTime; //--> Luxon's date object
 var Interval = luxon.Interval; //--> Luxon's interval object
 
+// var end = DateTime.utc('2017-03-13');
+// var start = DateTime.utc('2017-02-13');
+// var i = Interval.fromDateTimes(start, end);
+// i.length('days');
+// i.length('months');
+// console.log(i);
+
 var radtimeConst1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeConst2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (radtimeConst2 < 1000){
+    radtimeConst2 = "0" + radtimeConst2
+  }
+  if (radtimeConst2 < 100){
+    radtimeConst2 = "00" + radtimeConst2
+  }
+  if (radtimeConst2 < 10){
+    radtimeConst2 = "000" + radtimeConst2
+  }
 var radtimeConstOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var radtimeBase1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeBase2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (radtimeBase2 < 1000){
+    radtimeBase2 = "0" + radtimeBase2
+  }
+  if (radtimeBase2 < 100){
+    radtimeBase2 = "00" + radtimeBase2
+  }
+  if (radtimeBase2 < 10){
+    radtimeBase2 = "000" + radtimeBase2
+  }
 var radtimeBaseOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var stormtime1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var stormtime2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
+  if (stormtime2 < 1000){
+    stormtime2 = "0" + stormtime2
+  }
+  if (stormtime2 < 100){
+    stormtime2 = "00" + stormtime2
+  }
+  if (stormtime2 < 10){
+    stormtime2 = "000" + stormtime2
+  }
 var stormtimeOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
 var sattime1 = DateTime.utc().minus({ minutes: 20 }).toFormat('yyyyLLdd');
 var sattime2 = Math.floor(DateTime.utc().minus({ minutes: 20 }).toFormat('HHmm') / 10) * 10;
+  if (sattime2 < 1000){
+    sattime2 = "0" + sattime2
+  }
+  if (sattime2 < 100){
+    sattime2 = "00" + sattime2
+  }
+  if (sattime2 < 10){
+    sattime2 = "000" + sattime2
+  }
 var sattimeOutput1 = DateTime.now().minus({ minutes: 20 }).toFormat('ccc dd LLL, h:mma ZZ');
 
 var radtimeConst = radtimeConst1 + "_" + radtimeConst2;
@@ -457,7 +500,7 @@ break;
  
 map.addSource('radar', {
 'type': 'image',
-'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/066/066_256_${radtimeConst}.png`,
+'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/66/66_256_${radtimeConst}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
@@ -498,7 +541,7 @@ break;
  
 map.addSource('lightning', {
 'type': 'image',
-'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/066/066_256_cg_${stormtime}.png`,
+'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/66/66_256_cg_${stormtime}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
@@ -539,7 +582,7 @@ break;
  
 map.addSource('storms', {
 'type': 'image',
-'url': `https://storms.weatherwatch.net.au/images/066/256_${stormtime}.png`,
+'url': `https://storms.weatherwatch.net.au/images/66/256_${stormtime}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
