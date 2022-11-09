@@ -633,6 +633,7 @@ firstSymbolId
 
 $("#submit").on('click', function(e) {
   console.log('Refreshing map...');
+  map.removeLayer('Radar', 'Lightning', 'Storms');
   map.removeSource('radar', 'lightning', 'storms');
   map.addSource('radar', 'lightning', 'storms');
 })
