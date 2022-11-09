@@ -630,9 +630,7 @@ $("#submit").on('click', function(e) {
   console.log('Refreshing map...');
   map.removeLayer('Satellite', 'Radar', 'Lightning');
   map.removeSource('satellite', 'radar', 'lightning');
-  map.addSource('satellite', 'radar', 'lightning', {
-    "type": "raster",
-  });
+  map.addSource('satellite', 'radar', 'lightning');
 })
 </script>
   </body>
