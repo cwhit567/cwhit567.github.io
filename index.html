@@ -14,7 +14,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="https://stormorigin.github.io/template/css/style.css">
+    <link rel="stylesheet" href="D:\cwhit567\My Documents\WeatherOptics\template\css\style.css">
     <!-- fontawesome kit code -->
     <script src="https://kit.fontawesome.com/1868a14f8e.js" crossorigin="anonymous"></script>
     <!-- map settings -->
@@ -107,7 +107,7 @@
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="https://stormorigin.github.io/template/Satellite/satellite.html">
+            <a class="nav-link" href="D:\cwhit567\My Documents\Sublime Text\Dashboards\WeatherOptics_Dashboard\template\Satellite\satellite.html">
               <span class="menu-icon">
                 <i class="fa-solid fa-satellite"></i>
               </span>
@@ -172,7 +172,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="documentation/documentation.html#credits">
+            <a class="nav-link" href="https://stormorigin.github.io/documentation/documentation.html#credits">
               <span class="menu-icon">
                 <i class="fa-solid fa-book"></i>
               </span>
@@ -199,7 +199,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="https://i.imgur.com/c9VV2uF.png" alt="">
-                    <h4 class="mb-0 d-none d-sm-block navbar-profile-name">Mt Stapylton 2D Constant Altitude Reflectivity 256km</h4>
+                    <h4 class="mb-0 d-none d-sm-block navbar-profile-name">2D Radar</h4>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -253,7 +253,7 @@
               <div class="col-lg-12 grid-margin">
                 <div class="settings-card">
                   <div class="settings-card-body">
-                    <h4 class="card-title">Radar Settings</h4>
+                    <h4 class="card-title">Map Settings</h4>
                     <div class="template-demo">
                       <div class="dropdown">
                         <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radar Range</button>
@@ -286,10 +286,23 @@
                       <div class="dropdown">
                         <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radar Scan Type</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <a class="dropdown-item" href="#">Constant Altitude</a>
+                          <a id="grid" class="dropdown-item" href="#">Constant Altitude</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Base Scan (0.5°)</a>
+                          <a id="ppi" class="dropdown-item" href="#">Base Scan (0.5°)</a>
                         </div>
+                      </div>
+                      <div class="dropdown">
+                        <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lightning Type</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <a id="cg" class="dropdown-item" href="#">Cloud to Ground</a>
+                          <div class="dropdown-divider"></div>
+                          <a id="cc" class="dropdown-item" href="#">Cloud to Cloud</a>
+                        </div>
+                      </div>
+                      <div class="dropdown">
+                        <button id="submit" type="button" class="btn btn-warning btn-rounded btn-icon-text">
+                            <i class="mdi mdi-reload btn-icon-prepend"></i>Reload 
+                        </button>
                       </div>
                       <br>
                       <button style="border-radius: 10px;" type="button" class="btn btn-primary btn-fw">
@@ -390,6 +403,32 @@
 
     <!-- Map overlay settings -->
 <script>
+  // these are the variables that the user can change, which changes the map layers when reloaded.
+      // radar scan variables.
+var radScan = "Grid";
+
+$("#ppi").click(function() {
+
+    radScan = "PPI";
+ })
+
+$("#grid").click(function() {
+
+    radScan = "Grid";
+ })
+    // lightning type variables.
+var lightning = "cg";
+
+$("#cc").click(function() {
+
+    lightning = "cc";
+ })
+
+$("#cg").click(function() {
+
+    lightning = "cg";
+ })
+
 // luxon date and time
 var output1 = document.getElementById('output1')
 var rad = document.getElementById('rad')
@@ -398,12 +437,7 @@ var sat = document.getElementById('sat')
 var DateTime = luxon.DateTime; //--> Luxon's date object
 var Interval = luxon.Interval; //--> Luxon's interval object
 
-// var end = DateTime.utc('2017-03-13');
-// var start = DateTime.utc('2017-02-13');
-// var i = Interval.fromDateTimes(start, end);
-// i.length('days');
-// i.length('months');
-// console.log(i);
+var timestamp = DateTime.now().toFormat('ccc dd LLL, h:mma ZZ');
 
 var radtimeConst1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeConst2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
@@ -416,7 +450,7 @@ var radtimeConst2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HH
   if (radtimeConst2 < 10){
     radtimeConst2 = "000" + radtimeConst2
   }
-var radtimeConstOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
+var radtimeConstOutput1 = DateTime.now().toFormat('ccc dd LLL, h:mma ZZ');
 var radtimeBase1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var radtimeBase2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
   if (radtimeBase2 < 1000){
@@ -428,7 +462,7 @@ var radtimeBase2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHm
   if (radtimeBase2 < 10){
     radtimeBase2 = "000" + radtimeBase2
   }
-var radtimeBaseOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
+var radtimeBaseOutput1 = DateTime.now().toFormat('ccc dd LLL, h:mma ZZ');
 var stormtime1 = DateTime.utc().minus({ minutes: 5 }).toFormat('yyyyLLdd');
 var stormtime2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm') / 5) * 5;
   if (stormtime2 < 1000){
@@ -440,7 +474,7 @@ var stormtime2 = Math.floor(DateTime.utc().minus({ minutes: 5 }).toFormat('HHmm'
   if (stormtime2 < 10){
     stormtime2 = "000" + stormtime2
   }
-var stormtimeOutput1 = DateTime.now().minus({ minutes: 5 }).toFormat('ccc dd LLL, h:mma ZZ');
+var stormtimeOutput1 = DateTime.now().toFormat('ccc dd LLL, h:mma ZZ');
 var sattime1 = DateTime.utc().minus({ minutes: 20 }).toFormat('yyyyLLdd');
 var sattime2 = Math.floor(DateTime.utc().minus({ minutes: 20 }).toFormat('HHmm') / 10) * 10;
   if (sattime2 < 1000){
@@ -457,7 +491,7 @@ var sattimeOutput1 = DateTime.now().minus({ minutes: 20 }).toFormat('ccc dd LLL,
 var radtimeConst = radtimeConst1 + "_" + radtimeConst2;
 var radtimeBase = radtimeBase1 + "_" + radtimeBase2;
 var stormtime = stormtime1 + "_" + stormtime2;
-var sattime = sattime1 + "_" + sattime2;
+var sattime = sattime1 + sattime2;
 
 
 console.log("radtimeConst: " + radtimeConst);
@@ -469,24 +503,11 @@ console.log("radtimeBaseOutput1: " + radtimeBaseOutput1);
 console.log("stormtimeOutput1: " + stormtimeOutput1);
 console.log("sattimeOutput1: " + sattimeOutput1);
 
-output1.textContent = radtimeConstOutput1;
+output1.textContent = timestamp;
 rad.textContent = radtimeConst;
 storm.textContent = stormtime;
 sat.textContent = sattime;
 
-// dayjs date and time
-// dayjs.extend(dayjsPluginUTC.default)
-
-// var radtimeBase = dayjs.utc().format('YYYYMMDD_HHmm');
-// var radtimeConst = dayjs.utc().format('YYYYMMDD_HHmm');
-// var stormtime = dayjs.utc().format('YYYYMMDD_HHmm');
-// var sattime = dayjs.utc().format('YYYYMMDD_HHmm');
-
-// console.log("radtimeBase:" + " " + radtimeBase)
-// console.log("radtimeConst:" + " " + radtimeConst)
-// console.log("stormtime:" + " " + stormtime)
-// console.log("sattime:" + " " + sattime)
- 
 map.on('load', () => {
 const layers = map.getStyle().layers;
 // Find the index of the first symbol layer in the map style.
@@ -500,7 +521,7 @@ break;
  
 map.addSource('radar', {
 'type': 'image',
-'url': `https://zeus.stormyweather.com.au/img/WW2DGrid/066/066_256_${radtimeConst}.png`,
+'url': `https://zeus.stormyweather.com.au/img/WW2D${radScan}/066/066_256_${radtimeConst}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
@@ -541,7 +562,7 @@ break;
  
 map.addSource('lightning', {
 'type': 'image',
-'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/066/066_256_cg_${stormtime}.png`,
+'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/066/066_256_${lightning}_${stormtime}.png`,
 coordinates: [
 [150.64224, -25.41804], // northwest coordinates
 [155.83723, -25.41804], //northeast coordinates
@@ -609,6 +630,12 @@ map.addLayer(
 firstSymbolId
 );
 });
+
+$("#submit").on('click', function(e) {
+  console.log('Refreshing map...');
+  map.removeSource('radar', 'lightning', 'storms');
+  map.addSource('radar', 'lightning', 'storms');
+})
 </script>
     <!-- End Map overlay settings -->
   </body>

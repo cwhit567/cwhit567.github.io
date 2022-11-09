@@ -20,14 +20,15 @@ accessToken: mapboxgl.accessToken,
 countries: 'au',
  
 mapboxgl: mapboxgl
-})
+}),
+ 'bottom-right'
 );
     
 const slider = document.getElementById('slider');
 const sliderValue = document.getElementById('slider-value');
     
     // Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
 // Add geolocate control to the map.
 map.addControl(
@@ -39,8 +40,12 @@ enableHighAccuracy: true
 trackUserLocation: true,
 // Draw an arrow next to the location dot to indicate which direction the device is heading.
 showUserHeading: true
-})
+}),
+ 'bottom-right'
 );
+
+    // Add fullscreen control to the map.
+map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
 
 /* 
 Add an event listener that runs
@@ -68,9 +73,6 @@ const popup = new mapboxgl.Popup({ offset: [0, -15] })
   .addTo(map);
 
 });
-
-    // Add fullscreen control to the map.
-map.addControl(new mapboxgl.FullscreenControl());
 
   // get mouse coordinates
 map.on('mousemove', (e) => {

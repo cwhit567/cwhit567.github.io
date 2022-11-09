@@ -1,7 +1,7 @@
-console.log("StormOrigin WeatherOptics v1 - Copyright StormOrigin 2022")	
+console.log("StormOrigin WeatherOptics v1 - Copyright StormOrigin 2022")  
   mapboxgl.accessToken = 'pk.eyJ1IjoiY3doaXQ1NjciLCJhIjoiY2w1dGppejBuMnMxajNrbW0zanBiZG82ZSJ9.k2dgaG9FYSu1MJfvWjAbDA';
-	
-	// Set bounds to a specific area.
+  
+  // Set bounds to a specific area.
 const bounds = [
 [135.00569, -30.83075], // Southwest coordinates
 [155.97859, -10.22218], // Northeast coordinates
