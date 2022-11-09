@@ -635,7 +635,128 @@ $("#submit").on('click', function(e) {
   console.log('Refreshing map...');
   map.removeLayer('Radar', 'Lightning', 'Storms');
   map.removeSource('radar', 'lightning', 'storms');
-  map.addSource('radar', 'lightning', 'storms');
+  map.on('load', () => {
+  const layers = map.getStyle().layers;
+  // Find the index of the first symbol layer in the map style.
+  let firstSymbolId;
+  for (const layer of layers) {
+  if (layer.type === 'symbol') {
+  firstSymbolId = layer.id;
+  break;
+  }
+  }
+   
+  map.addSource('radar', {
+  'type': 'image',
+  'url': `https://zeus.stormyweather.com.au/img/WW2D${radScan}/066/066_256_${radtimeConst}.png`,
+  coordinates: [
+  [150.64224, -25.41804], // northwest coordinates
+  [155.83723, -25.41804], //northeast coordinates
+  [155.83723, -30.01744], //southeast coordinates
+  [150.64224, -30.01744], //southwest coordinates
+  ]
+  });
+  map.addLayer(
+  {
+  'id': 'Radar',
+  'type': 'raster',
+  'source': 'radar',
+  'paint': {
+  'raster-fade-duration': 0
+  }
+  // This is the important part of this example: the addLayer
+  // method takes 2 arguments: the layer as an object, and a string
+  // representing another layer's name. If the other layer
+  // exists in the style already, the new layer will be positioned
+  // right before that layer in the stack, making it possible to put
+  // 'overlays' anywhere in the layer stack.
+  // Insert the layer beneath the first symbol layer.
+  },
+  firstSymbolId
+  );
+  });
+
+  map.on('load', () => {
+  const layers = map.getStyle().layers;
+  // Find the index of the first symbol layer in the map style.
+  let firstSymbolId;
+  for (const layer of layers) {
+  if (layer.type === 'symbol') {
+  firstSymbolId = layer.id;
+  break;
+  }
+  }
+   
+  map.addSource('lightning', {
+  'type': 'image',
+  'url': `https://archive.weatherwatch.net.au/data/img/lightning/ww2d/066/066_256_${lightning}_${stormtime}.png`,
+  coordinates: [
+  [150.64224, -25.41804], // northwest coordinates
+  [155.83723, -25.41804], //northeast coordinates
+  [155.83723, -30.01744], //southeast coordinates
+  [150.64224, -30.01744], //southwest coordinates
+  ]
+  });
+  map.addLayer(
+  {
+  'id': 'Lightning',
+  'type': 'raster',
+  'source': 'lightning',
+  'paint': {
+  'raster-fade-duration': 0
+  }
+  // This is the important part of this example: the addLayer
+  // method takes 2 arguments: the layer as an object, and a string
+  // representing another layer's name. If the other layer
+  // exists in the style already, the new layer will be positioned
+  // right before that layer in the stack, making it possible to put
+  // 'overlays' anywhere in the layer stack.
+  // Insert the layer beneath the first symbol layer.
+  },
+  firstSymbolId
+  );
+  });
+
+  map.on('load', () => {
+  const layers = map.getStyle().layers;
+  // Find the index of the first symbol layer in the map style.
+  let firstSymbolId;
+  for (const layer of layers) {
+  if (layer.type === 'symbol') {
+  firstSymbolId = layer.id;
+  break;
+  }
+  }
+   
+  map.addSource('storms', {
+  'type': 'image',
+  'url': `https://storms.weatherwatch.net.au/images/066/256_${stormtime}.png`,
+  coordinates: [
+  [150.64224, -25.41804], // northwest coordinates
+  [155.83723, -25.41804], //northeast coordinates
+  [155.83723, -30.01744], //southeast coordinates
+  [150.64224, -30.01744], //southwest coordinates
+  ]
+  });
+  map.addLayer(
+  {
+  'id': 'Storms',
+  'type': 'raster',
+  'source': 'storms',
+  'paint': {
+  'raster-fade-duration': 0
+  }
+  // This is the important part of this example: the addLayer
+  // method takes 2 arguments: the layer as an object, and a string
+  // representing another layer's name. If the other layer
+  // exists in the style already, the new layer will be positioned
+  // right before that layer in the stack, making it possible to put
+  // 'overlays' anywhere in the layer stack.
+  // Insert the layer beneath the first symbol layer.
+  },
+  firstSymbolId
+  );
+  });
 })
 </script>
     <!-- End Map overlay settings -->
